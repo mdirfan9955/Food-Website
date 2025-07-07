@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Foodie's Delight</title>
+  <link rel="stylesheet" href="style.css"/>
+
+</head>
+<body>
+
+  <!-- Header Section -->
+  <header>
+    <nav>
+         <div class="logo">Foodie's Delight</div>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#reviews">Reviews</a></li>
+        <li><a href="#contact">Contact</a></li>
+        <li><a href="javascript:void(0);" id="reservationButton">Make a Reservation</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <h1>Welcome to Foodie's Delight</h1>
+    <p>We serve the best food in town, offering a wide variety of dishes and fast delivery services. Join us for an unforgettable dining experience!</p>
+  </section>
+
+  <!-- Menu Section -->
+  <section id="menu">
+    <h2>Our Menu</h2>
+
+     <select id="filterSelect">
+    <option value="all">Show All</option>
+    <option value="indian">Indian</option>
+    <option value="italian">Italian</option>
+    <option value="fast">Fast Food</option>
+  </select>
+  <div id="menu-container">
+    <div class="menu-item" data-category="italian">
+      <img src="pasta.jpeg" alt="Pasta" />
+      <h3>Pasta</h3>
+      <p>Delicious homemade pasta served with your choice of sauce.</p>
+      <span class="price">₹ 199</span>
+      <button class="buy-now-btn">Buy Now</button>
+    </div>
+    <div class="menu-item" data-category="fast">
+      <img src="beef-burger.avif" alt="Burger" />
+      <h3>Burger</h3>
+      <p>Juicy beef burger with fresh toppings. Served with crispy fries.</p>
+      <span class="price">₹ 199</span>
+      <button class="buy-now-btn">Buy Now</button>
+    </div>
+    <div class="menu-item" data-category="italian">
+      <img src="download.jpeg" alt="Pizza" />
+      <h3>Pizza</h3>
+      <p>Freshly baked pizza with mozzarella cheese and toppings.</p>
+      <span class="price">₹ 149</span>
+      <button class="buy-now-btn">Buy Now</button>
+    </div>
+    <div class="menu-item" data-category="indian">
+      <img src="biryani.jpeg" alt="Biryani" />
+      <h3>Biryani</h3>
+      <p>Aromatic rice dish with tender chicken or vegetables.</p>
+      <span class="price">₹ 199</span>
+      <button class="buy-now-btn">Buy Now</button>
+    </div>
+    <div class="menu-item" data-category="indian">
+      <img src="paneet_butter.jpeg" alt="Paneer Butter Masala" />
+      <h3>Paneer Butter Masala</h3>
+      <p>Paneer cooked in creamy tomato gravy.</p>
+      <span class="price">₹ 249</span>
+      <button class="buy-now-btn">Buy Now</button>
+    </div>
+    <div class="menu-item" data-category="indian">
+      <img src="butter_chicken.jpeg" alt="Butter Chicken" />
+      <h3>Butter Chicken</h3>
+      <p>Classic Indian dish with creamy tomato sauce.</p>
+      <span class="price">₹ 299</span>
+      <button class="buy-now-btn">Buy Now</button>
+    </div>
+  </div>
+</section>
+
+  <!-- Reviews Section -->
+    <section id="reviews">
+    <h2>Customer Reviews</h2>
+    <div class="review">
+        <p>"The food was amazing! I will definitely order again!"</p>
+        <span>- Rehan</span>
+    </div>
+    <div class="review">
+        <p>"Best pizza I've ever had! Highly recommended."</p>
+        <span>- Afroz</span>
+    </div>
+    <div class="review">
+        <p>"Fast delivery and delicious meals. Highly satisfied!"</p>
+        <span>- yusuf</span>
+    </div>
+    <div class="review">
+        <p>"Lovely ambiance and the biryani is out of this world."</p>
+        <span>- sahil</span>
+    </div>
+    <div class="review">
+        <p>"Great customer service and tasty dishes every time."</p>
+        <span>- farhan</span>
+    </div>
+    </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p>Email: info@foodiesdelight.com</p>
+    <p>Phone: 914-257-5570</p>
+  </section>
+
+  <!-- Reservation Popup -->
+  <div id="reservationPopup" class="popup">
+    <div class="popup-content">
+      <h2>Reservation Form</h2>
+      <form id="reservationForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required><br><br>
+
+        <label for="date">Date:</label>
+        <input type="date" id="date" required><br><br>
+
+        <label for="time">Time:</label>
+        <input type="time" id="time" required><br><br>
+
+        <button type="submit">Book Now</button>
+        <button type="button" id="closePopup">Close</button>
+      </form>
+    </div>
+  </div>
+      @all right reverseved
+  <!-- Script Section -->
+  <script>
+    // Popup Logic
+    const reservationButton = document.getElementById('reservationButton');
+    const reservationPopup = document.getElementById('reservationPopup');
+    const closePopup = document.getElementById('closePopup');
+
+    reservationButton.addEventListener('click', () => {
+      reservationPopup.style.display = 'flex';
+    });
+
+    closePopup.addEventListener('click', () => {
+      reservationPopup.style.display = 'none';
+    });
+
+    document.getElementById('reservationForm').addEventListener('submit', function (e) {
+      e.preventDefault();
+      const name = document.getElementById('name').value;
+      const date = document.getElementById('date').value;
+      const time = document.getElementById('time').value;
+
+      alert(`Reservation confirmed for ${name} on ${date} at ${time}`);
+      reservationPopup.style.display = 'none';
+    });
+
+    // Menu Filter Logic
+    const filterSelect = document.getElementById('filterSelect');
+    const menuItems = document.querySelectorAll('.menu-item');
+
+    filterSelect.addEventListener('change', function () {
+      const category = this.value;
+      menuItems.forEach(item => {
+        if (category === 'all' || item.dataset.category === category) {
+          item.style.display = 'block';
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+
+
+      document.querySelectorAll('.buy-now-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      alert('This functionality is not yet implemented.');
+    });
+  });
+  </script>
+</body>
+</html>
